@@ -55,9 +55,9 @@
     </style>
 </head>
 <body>
-    <h1>Noor, I Have a Question for You!</h1>
+    <h1>نور يا حب, معي سؤال قدلي دهر اشتي اسأله..</h1>
     <div id="gameContainer">
-        <p id="message">Win the game to unlock a question...</p>
+        <p id="message">أولاً فوزي باللعبه الصعبه موت عشان تشوفي السؤال...</p>
         <button id="startGame" class="btn">Start Game</button>
         <canvas id="gameCanvas" width="400" height="400" style="border:1px solid #000; display: none;"></canvas>
         <div id="controls" style="display: none;">
@@ -66,16 +66,17 @@
         </div>
     </div>
     <div id="proposal" style="display: none;">
-        <h2>Will You Marry Me?</h2>
-        <button id="yes" class="btn">Yes</button>
-        <button id="no" class="btn">No</button>
+        <h2>تقبلي تكوني شريكتي للأبد؟</h2>
+        <h2>تتزوجيني يا نور؟</h2>
+        <button id="yes" class="btn">نعم</button>
+        <button id="no" class="btn">لا</button>
     </div>
 
     <script>
         document.getElementById("startGame").addEventListener("click", function() {
             document.getElementById("gameCanvas").style.display = "block";
             document.getElementById("startGame").style.display = "none";
-            document.getElementById("message").textContent = "Catch the heart to win!";
+            document.getElementById("message").textContent = "امسكي القلب عشان تفوزي!";
             document.getElementById("controls").style.display = "flex"; // Show touch controls
             startGame();
         });
@@ -153,7 +154,7 @@
         });
 
         document.getElementById("yes").addEventListener("click", function() {
-            alert("Yay! I love you, Noor! 💍❤️");
+            alert("💍❤️ يااااااااااي, احبك موت يا نور ");
         });
     </script>
 </body>

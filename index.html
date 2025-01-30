@@ -9,9 +9,10 @@
             text-align: center;
             font-family: Arial, sans-serif;
             background-color: #f8f0e3;
+            overflow: hidden;
         }
         #gameContainer {
-            margin-top: 50px;
+            margin-top: 20px;
         }
         #message {
             font-size: 24px;
@@ -33,6 +34,24 @@
             color: white;
             position: absolute;
         }
+        #controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .control-btn {
+            font-size: 24px;
+            padding: 15px;
+            margin: 5px;
+            width: 100px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        .control-btn:active {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -41,6 +60,10 @@
         <p id="message">Win the game to unlock a question...</p>
         <button id="startGame" class="btn">Start Game</button>
         <canvas id="gameCanvas" width="400" height="400" style="border:1px solid #000; display: none;"></canvas>
+        <div id="controls" style="display: none;">
+            <button id="moveLeft" class="control-btn">⬅️</button>
+            <button id="moveRight" class="control-btn">➡️</button>
+        </div>
     </div>
     <div id="proposal" style="display: none;">
         <h2>Will You Marry Me?</h2>
@@ -53,6 +76,7 @@
             document.getElementById("gameCanvas").style.display = "block";
             document.getElementById("startGame").style.display = "none";
             document.getElementById("message").textContent = "Catch the heart to win!";
+            document.getElementById("controls").style.display = "flex"; // Show touch controls
             startGame();
         });
 
@@ -91,12 +115,30 @@
                 drawHeart();
             }
             
-            document.addEventListener("keydown", function(event) {
-                if (event.key === "ArrowLeft" && playerX > 0) {
+            function movePlayer(direction) {
+                if (direction === "left" && playerX > 0) {
                     playerX -= 20;
-                } else if (event.key === "ArrowRight" && playerX < 350) {
+                } else if (direction === "right" && playerX < 350) {
                     playerX += 20;
                 }
+                drawHeart();
+            }
+
+            document.addEventListener("keydown", function(event) {
+                if (event.key === "ArrowLeft") {
+                    movePlayer("left");
+                } else if (event.key === "ArrowRight") {
+                    movePlayer("right");
+                }
+            });
+
+            // Mobile touch events
+            document.getElementById("moveLeft").addEventListener("click", function() {
+                movePlayer("left");
+            });
+
+            document.getElementById("moveRight").addEventListener("click", function() {
+                movePlayer("right");
             });
 
             moveHeart();
